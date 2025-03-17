@@ -1,107 +1,37 @@
-Validação de Formulário com Mensagens de Erro Dinâmicas
+Validação de Formulário
 
-Este projeto implementa uma validação de formulário utilizando JavaScript puro, garantindo que os campos obrigatórios sejam preenchidos corretamente antes do envio.
+Este projeto implementa a validação de um formulário HTML com mensagens de erro dinâmicas, garantindo que os campos obrigatórios sejam preenchidos corretamente antes do envio.
 
-Funcionalidades
+📌 Funcionalidades
 
-Exibe uma mensagem de erro apenas para os campos vazios.
+Exibe mensagens de erro para campos vazios.
 
-Adiciona uma borda vermelha nos campos inválidos.
+Adiciona uma borda vermelha em inputs inválidos.
 
-Remove a mensagem de erro e adiciona uma borda verde ao preencher um campo corretamente.
+Remove o erro e adiciona uma borda verde quando o campo é preenchido corretamente.
 
-Evita que o formulário seja enviado caso haja campos obrigatórios não preenchidos.
+Impede o envio do formulário caso existam campos obrigatórios não preenchidos.
 
-Estrutura do Código
+🛠️ Como funciona
 
-HTML
+O script utiliza JavaScript puro para manipular os elementos do DOM e adicionar mensagens de erro aos campos obrigatórios.
 
-Cada input deve ter um id único e uma mensagem de erro associada com um data-input correspondente:
+Validação em tempo real
 
-<input type="text" id="nome" class="validaInput" placeholder="Nome">
-<span class="erro sumir" data-input="nome">Campo obrigatório</span>
+Cada input recebe um evento input, que remove a mensagem de erro e adiciona uma borda verde quando o usuário digita algo.
 
-<input type="email" id="email" class="validaInput" placeholder="E-mail">
-<span class="erro sumir" data-input="email">Campo obrigatório</span>
+Validação ao clicar no botão de envio
 
-<button id="btn-enviar-cadastro">Enviar</button>
+O script percorre todos os inputs obrigatórios.
 
-CSS
+Se o campo estiver vazio, exibe a mensagem de erro e adiciona a borda vermelha.
 
-.bordaVermelha {
-    border: 2px solid red;
-}
+Se o campo estiver preenchido, remove a mensagem de erro e aplica a borda verde.
 
-.bordaVerde {
-    border: 2px solid green;
-}
+📜 Tecnologias utilizadas
 
-.sumir {
-    display: none;
-}
+HTML5
 
-JavaScript
+CSS3
 
-// Função para exibir erro
-function adicionaErro(erro, input){
-    erro.forEach(mensagem => {
-        if(mensagem.dataset.input === input.id){
-            if(input.value.trim() === ''){
-                mensagem.classList.remove('sumir');
-                input.classList.add('bordaVermelha');
-            } else {
-                mensagem.classList.add('sumir');
-            }
-        }
-    });
-}
-
-// Função para remover erro
-function removeErro(erro, input){
-    erro.forEach(mensagem => {
-        if(mensagem.dataset.input === input.id){
-            if(input.value.trim() !== ''){
-                mensagem.classList.add('sumir');
-                input.classList.remove('bordaVermelha');
-            }
-        }
-    });
-}
-
-const btnEnviar = document.querySelector("#btn-enviar-cadastro");
-const mensagemErro = document.querySelectorAll(".erro");
-
-// Valida enquanto o usuário digita
-for(let input of document.querySelectorAll(".validaInput")){
-    input.addEventListener("input", () => {
-        if(input.value.trim() === ''){
-            input.classList.remove('bordaVerde');
-        } else {
-            input.classList.add('bordaVerde');
-            removeErro(mensagemErro, input);
-        }
-    });
-}
-
-// Valida ao clicar no botão de envio
-btnEnviar.addEventListener("click", () => {
-    let camposValidos = true;
-
-    for(let input of document.querySelectorAll(".validaInput")){
-        if(input.value.trim() === ''){
-            adicionaErro(mensagemErro, input);
-            camposValidos = false;
-        } else {
-            removeErro(mensagemErro, input);
-        }
-    }
-
-    if (!camposValidos) {
-        return false;
-    }
-
-    alert("Formulário enviado com sucesso!");
-});
-
-
-
+JavaScript (DOM Manipulation)
