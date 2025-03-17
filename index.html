@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    
+    <main class="main">
+        <section class="container-formulario">
+            <div class="box-texto">
+                <h1 class="titulo">
+                    FICOU COM DÚVIDA?<br />
+                    NOS MANDE UMA MENSAGEM!
+                </h1>
+                <p class="sub-texto">
+                    caso tenha ficado com qualquer dúvida basta nos mandar uma mensagem e entraremos em contato em menos
+                    de 24h.
+                </p>
+            </div>
+            <form action="" id="form-cadastro">
+                <div class="box-inputs">
+                    <!-- As div foram criadas para faciliar o controle do espaçamento entre cada input -->
+                    <div>
+                        <input type="text" name="nome" id="nome" placeholder="Nome Completo *"
+                            class="inputs-cadastro validaInput">
+                            <!-- 
+                                O data-input serve para referenciar o span ao seu determinado input 
+                                e facilitar  a manipulação no Javascript 
+                            -->
+                        <span class="erro sumir" data-input="nome">campo-obrigatório</span> 
+                    </div>
+                    <div>
+                        <input type="text" name="email" id="email" placeholder="Email *"
+                            class="inputs-cadastro validaInput">
+                        <span class="erro sumir" data-input="email">campo-obrigatório</span>
+                    </div>
+                    <div>
+                        <input type="number" name="telefone" id="telefone" placeholder="Telefone *"
+                            class="inputs-cadastro validaInput">
+                        <span class="erro sumir" data-input="telefone">campo-obrigatório</span>
+                    </div>
+                    <div>
+                        <textarea name="mensagem" id="mensagem" placeholder="Mensagem *"
+                            class=" validaInput"></textarea>
+                        <span class="erro sumir" data-input="mensagem">campo-obrigatório</span>
+                    </div>
+                </div>
+                <p class="text-campo-obrigatorio">*campos obrigatórios</p>
+                <button type="button" id="btn-enviar-cadastro">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <script type="text/javascript" src="src/js/script.js"></script>
 </body>
+
 </html>
